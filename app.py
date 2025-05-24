@@ -19,17 +19,17 @@ if uploaded_image is not None:
     st.image(img, caption="Uploaded Image", width=300)
     
     # predict the value
-    # img_array = image.img_to_array(img)
-    # img_array = np.expand_dims(img_array, axis=0)
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
     
-    # prediction = model.predict(img_array)
-    # confidence = float(prediction[0][0]) * 100
-    # class_name = "dog" if prediction[0][0] > 0.5 else "cat"
-    # confidence = confidence if class_name == "dog" else 100 - confidence
+    prediction = model.predict(img_array)
+    confidence = float(prediction[0][0]) * 100
+    class_name = "dog" if prediction[0][0] > 0.5 else "cat"
+    confidence = confidence if class_name == "dog" else 100 - confidence
     
-    # st.metric("Prediction", f"{class_name.title()} ({confidence:.1f}% confidence)")
-    # if confidence > 95:
-    #     st.success("Cool! the model did a great jon")
-    #     st.balloons()
-    # elif confidence < 60:
-    #     st.warning("The prediction was kinda poor")
+    st.metric("Prediction", f"{class_name.title()} ({confidence:.1f}% confidence)")
+    if confidence > 95:
+        st.success("Cool! the model did a great jon")
+        st.balloons()
+    elif confidence < 60:
+        st.warning("The prediction was kinda poor")
